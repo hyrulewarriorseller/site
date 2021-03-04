@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -8,8 +8,8 @@
     <style>
         html, body {
             margin: 0;
-            width: 100%;
-            height: 100%;
+            width: 600px;
+            height: 850px;
             font-family: Arial, Helvetica, sans-serif;
         }
         #dialogText {
@@ -88,8 +88,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 595px;
-            height: 841px;
+            width: 100%;
+            height: 100%;
         }
         #attribution {
             position: absolute;
@@ -191,72 +191,72 @@ a[0]++}h.sigBytes=4*c;return h}});g.PBKDF2=function(d,b,e){return n.create(e).co
         * http://github.com/jugglinmike/srcdoc-polyfill/
         * Copyright (c) 2013 Mike Pennisi; Licensed MIT */
         (function( window, document, undefined ) {
-	
-	        var idx, iframes;
-	        var _srcDoc = window.srcDoc;
-	        var isCompliant = !!("srcdoc" in document.createElement("iframe"));
-	        var implementations = {
-		        compliant: function( iframe, content ) {
+    
+            var idx, iframes;
+            var _srcDoc = window.srcDoc;
+            var isCompliant = !!("srcdoc" in document.createElement("iframe"));
+            var implementations = {
+                compliant: function( iframe, content ) {
 
-			        if (content) {
-				        iframe.setAttribute("srcdoc", content);
-			        }
-		        },
-		        legacy: function( iframe, content ) {
+                    if (content) {
+                        iframe.setAttribute("srcdoc", content);
+                    }
+                },
+                legacy: function( iframe, content ) {
 
-			        var jsUrl;
+                    var jsUrl;
 
-			        if (!iframe || !iframe.getAttribute) {
-				        return;
-			        }
+                    if (!iframe || !iframe.getAttribute) {
+                        return;
+                    }
 
-			        if (!content) {
-				        content = iframe.getAttribute("srcdoc");
-			        } else {
-				        iframe.setAttribute("srcdoc", content);
-			        }
+                    if (!content) {
+                        content = iframe.getAttribute("srcdoc");
+                    } else {
+                        iframe.setAttribute("srcdoc", content);
+                    }
 
-			        if (content) {
-				        // The value returned by a script-targeted URL will be used as
-				        // the iFrame's content. Create such a URL which returns the
-				        // iFrame element's `srcdoc` attribute.
-				        jsUrl = "javascript: window.frameElement.getAttribute('srcdoc');";
+                    if (content) {
+                        // The value returned by a script-targeted URL will be used as
+                        // the iFrame's content. Create such a URL which returns the
+                        // iFrame element's `srcdoc` attribute.
+                        jsUrl = "javascript: window.frameElement.getAttribute('srcdoc');";
 
-				        iframe.setAttribute("src", jsUrl);
+                        iframe.setAttribute("src", jsUrl);
 
-				        // Explicitly set the iFrame's window.location for
-				        // compatability with IE9, which does not react to changes in
-				        // the `src` attribute when it is a `javascript:` URL, for
-				        // some reason
-				        if (iframe.contentWindow) {
-					        iframe.contentWindow.location = jsUrl;
-				        }
-			        }
-		        }
-	        };
-	        var srcDoc = window.srcDoc = {
-		        // Assume the best
-		        set: implementations.compliant,
-		        noConflict: function() {
-			        window.srcDoc = _srcDoc;
-			        return srcDoc;
-		        }
-	        };
+                        // Explicitly set the iFrame's window.location for
+                        // compatability with IE9, which does not react to changes in
+                        // the `src` attribute when it is a `javascript:` URL, for
+                        // some reason
+                        if (iframe.contentWindow) {
+                            iframe.contentWindow.location = jsUrl;
+                        }
+                    }
+                }
+            };
+            var srcDoc = window.srcDoc = {
+                // Assume the best
+                set: implementations.compliant,
+                noConflict: function() {
+                    window.srcDoc = _srcDoc;
+                    return srcDoc;
+                }
+            };
 
-	        // If the browser supports srcdoc, no shimming is necessary
-	        if (isCompliant) {
-		        return;
-	        }
+            // If the browser supports srcdoc, no shimming is necessary
+            if (isCompliant) {
+                return;
+            }
 
-	        srcDoc.set = implementations.legacy;
+            srcDoc.set = implementations.legacy;
 
-	        // Automatically shim any iframes already present in the document
-	        iframes = document.getElementsByTagName("iframe");
-	        idx = iframes.length;
+            // Automatically shim any iframes already present in the document
+            iframes = document.getElementsByTagName("iframe");
+            idx = iframes.length;
 
-	        while (idx--) {
-		        srcDoc.set( iframes[idx] );
-	        }
+            while (idx--) {
+                srcDoc.set( iframes[idx] );
+            }
 
         }( this, this.document ));
     </script>
@@ -328,6 +328,7 @@ a[0]++}h.sigBytes=4*c;return h}});g.PBKDF2=function(d,b,e){return n.create(e).co
         if(pass) {
             document.getElementById('pass').value =  localStorage.getItem("pass");
             doSubmit();
+
         }
     </script>
   </body>
